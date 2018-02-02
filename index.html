@@ -3,18 +3,19 @@
     <meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1 user-scalable=no">
     <style type="text/css">
       html {
-        font-size: 28px;
+        font-size: 32px;
+        color: #222e;
         background: url(/mountain.jpeg) no-repeat center center fixed;
         background-size: cover;
       }
       @media (min-width: 800px) {
         html {
-          font-size: 24px;
+          font-size: 28px;
         }
       }
       @media (min-width: 1100px) {
         html {
-          font-size: 20px;
+          font-size: 24px;
         }
       }
       body {
@@ -46,21 +47,22 @@
       }
       .container > * {
         padding: 1rem;
+        border: 1px solid #1119;
       }
       .container .area-a {
-        background-color: #daa8;
+        background-color: #eef9;
       }
       .container .area-b {
-        background-color: #ada8;
+        background-color: #fee9;
       }
       .container .area-c {
-        background-color: #aad8;
+        background-color: #efe9;
       }
       .container .area-d {
-        background-color: #add8;
+        background-color: #eff9;
       }
       .container .area-e {
-        background-color: #dda8;
+        background-color: #ffe9;
       }
       @supports (display: grid) {
         @media (min-width: 800px) {
@@ -94,9 +96,8 @@
         }
         @media (min-width: 1100px) {
           .container {
-            grid-gap: 1rem;
             grid-template-columns: 1fr 2fr 1fr;
-            grid-template-rows: auto auto auto 1fr;
+            grid-template-rows: 1fr 1fr 5fr 1fr;
             grid-template-areas:
               "a a c"
               "b b c"
@@ -126,6 +127,13 @@
       </div>
       <div class="area-d">
         <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
