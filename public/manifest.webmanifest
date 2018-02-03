@@ -1,0 +1,21 @@
+{
+  "name": "Indigo Mountain",
+  "short_name": "Indigo Mountain",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#efe",
+  "description": "An example SPA PWA",
+  "icons": [{
+    "src": "images/mountains-icon-64.png",
+    "sizes": "64x64",
+    "type": "image/png"
+  }, {
+    "src": "images/mountains-icon-128.png",
+    "sizes": "128x128",
+    "type": "image/png"
+  }, {
+    "src": "images/mountains-icon-256.png",
+    "sizes": "256x256",
+    "type": "image/png"
+  }]
+}
