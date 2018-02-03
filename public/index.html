@@ -1,11 +1,24 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1 user-scalable=no">
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBKPGCNxpdDt2JLaSXwZjFNBqO1o94_lzk",
+        authDomain: "indigo-mountain.firebaseapp.com",
+        databaseURL: "https://indigo-mountain.firebaseio.com",
+        projectId: "indigo-mountain",
+        storageBucket: "",
+        messagingSenderId: "54616459875"
+      };
+      firebase.initializeApp(config);
+    </script>
     <style type="text/css">
       html {
         font-size: 32px;
         color: #222e;
-        background: url(/mountain.jpeg) no-repeat center center fixed;
+        background: url(mountain.jpeg) no-repeat center center fixed;
         background-size: cover;
       }
       @media (min-width: 800px) {
@@ -111,7 +124,7 @@
   <body>
     <div class="container">
       <div class="area-a">
-        <h1>Test Page</h1>
+        <h1>Test Page 11</h1>
       </div>
       <div class="area-b">
         <p>
@@ -150,5 +163,10 @@
         </ul>
       </div>
     </div>
+    <script type="text/javascript">
+      if ('serviceWorker' in navigator && window.location.hostname !== "localhost") {
+        navigator.serviceWorker.register('service-worker.js');
+      }
+    </script>
   </body>
 </html>
