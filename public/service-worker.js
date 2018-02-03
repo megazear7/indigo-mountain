@@ -6,7 +6,7 @@ const PRECACHE_URLS = [
   '',
   '/',
   '/index.html',
-  '/mountain.jpeg'
+  '/images/mountain.jpeg'
 ];
 
 // The install handler takes care of precaching the resources we always need.
