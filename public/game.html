@@ -60,9 +60,13 @@
       a:active {
         text-decoration: none;
       }
+      .container {
+        min-height: 100%;
+      }
       .container > * {
         padding: 1rem;
         border: 1px solid #1119;
+        overflow: hidden;
       }
       .container .area-a {
         background-color: #eef9;
@@ -83,14 +87,13 @@
         @media (min-width: 800px) {
           .container {
             display: grid;
-            height: 100%;
             grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: auto auto auto 1fr;
+            grid-template-rows: auto auto auto auto;
             grid-template-areas:
               "a a a"
-              "b b c"
-              "d d c"
-              "e e e";
+              "b b d"
+              "b b e"
+              "c c c";
           }
           .container .area-a {
             grid-area: a;
@@ -106,61 +109,73 @@
           }
           .container .area-e {
             grid-area: e;
-            align-self: end;
           }
         }
         @media (min-width: 1100px) {
           .container {
-            grid-template-columns: 1fr 2fr 1fr;
-            grid-template-rows: 1fr 1fr 5fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-rows: auto auto auto auto;
             grid-template-areas:
-              "a a c"
-              "b b c"
-              "d d d"
-              "e e e";
+              "a a a a"
+              "d b b e"
+              "d b b e"
+              "c c c c";
           }
         }
       }
+      .card {
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+        background-color: #fff;
+        padding: 5px;
+        margin: 5px;
+        border-radius: 2px;
+        float: left;
+        cursor: pointer;
+      }
     </style>
+    <script>
+      function allowDrop(ev) {
+          ev.preventDefault();
+      }
+
+      function drag(ev) {
+          ev.dataTransfer.setData("card-id", ev.target.id);
+      }
+
+      function drop(ev) {
+          ev.preventDefault();
+          var data = ev.dataTransfer.getData("card-id");
+          var movingCard = document.getElementById(data);
+          var dropTargetCard = ev.target.closest(".card");
+          var area = ev.target.closest(".area");
+          if (dropTargetCard) {
+            area.insertBefore(movingCard, dropTargetCard)
+          } else {
+            area.appendChild(movingCard);
+          }
+      }
+    </script>
   </head>
   <body>
     <div class="container">
-      <div class="area-a">
-        <h1>Test Page 13</h1>
+      <div class="area area-a" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div class="card" id="card-1" draggable="true" ondragstart="drag(event)">Card 1</div>
+        <div class="card" id="card-2" draggable="true" ondragstart="drag(event)">Card 2</div>
       </div>
-      <div class="area-b">
-        <p>
-          <a href="/game.html">Example Game</a>
-        </p>
+      <div class="area area-b" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div class="card" id="card-3" draggable="true" ondragstart="drag(event)">Card 3</div>
+        <div class="card" id="card-4" draggable="true" ondragstart="drag(event)">Card 4</div>
       </div>
-      <div class="area-c">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
+      <div class="area area-c" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div class="card" id="card-5" draggable="true" ondragstart="drag(event)">Card 5</div>
       </div>
-      <div class="area-d">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
+      <div class="area area-d" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div class="card" id="card-6" draggable="true" ondragstart="drag(event)">Card 6</div>
+        <div class="card" id="card-7" draggable="true" ondragstart="drag(event)">Card 7</div>
       </div>
-      <div class="area-e">
-        <ul>
-          <li>
-            <a href="https://www.github.com">Github</a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com">LinkedIn</a>
-          </li>
-        </ul>
+      <div class="area area-e" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div class="card" id="card-8" draggable="true" ondragstart="drag(event)">Card 8</div>
       </div>
     </div>
     <script type="text/javascript">
