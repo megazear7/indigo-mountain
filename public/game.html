@@ -136,14 +136,19 @@
     </style>
     <script>
       function allowDrop(ev) {
+        if (! ('ontouchstart' in window)) {
           ev.preventDefault();
+        }
       }
 
       function drag(ev) {
+        if (! ('ontouchstart' in window)) {
           ev.dataTransfer.setData("card-id", ev.target.id);
+        }
       }
 
       function drop(ev) {
+        if (! ('ontouchstart' in window)) {
           ev.preventDefault();
           var data = ev.dataTransfer.getData("card-id");
           var movingCard = document.getElementById(data);
@@ -154,6 +159,7 @@
           } else {
             area.appendChild(movingCard);
           }
+        }
       }
     </script>
   </head>
