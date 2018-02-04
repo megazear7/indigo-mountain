@@ -133,20 +133,11 @@
         float: left;
         cursor: pointer;
       }
+      .card.picked-up {
+        box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+      }
     </style>
     <script>
-      function allowDrop(ev) {
-        if (! ('ontouchstart' in window)) {
-          ev.preventDefault();
-        }
-      }
-
-      function drag(ev) {
-        if (! ('ontouchstart' in window)) {
-          ev.dataTransfer.setData("card-id", ev.target.id);
-        }
-      }
-
       function drop(ev) {
         if (! ('ontouchstart' in window)) {
           ev.preventDefault();
@@ -184,6 +175,61 @@
         <div class="card" id="card-8" draggable="true" ondragstart="drag(event)">Card 8</div>
       </div>
     </div>
+    <script>
+      var dropping = false;
+      var movingCard = undefined;
+      var cardClickHandler = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelectorAll(".card").forEach((card) => {
+          card.classList.remove("picked-up");
+        });
+        if (dropping && movingCard) {
+          var dropTargetCard = e.target.closest(".card");
+          var area = e.target.closest(".area");
+          if (dropTargetCard) {
+            area.insertBefore(movingCard, dropTargetCard)
+          }
+          movingCard = undefined;
+        } else {
+          movingCard = e.target;
+          e.target.classList.add("picked-up");
+        }
+        dropping = ! dropping;
+      };
+
+      var areaClickHandler = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (movingCard) {
+          document.querySelectorAll(".card").forEach((card) => {
+            card.classList.remove("picked-up");
+          });
+          e.target.appendChild(movingCard);
+          movingCard = undefined;
+        }
+      }
+
+      document.querySelectorAll(".card").forEach((card => {
+        card.addEventListener("click", cardClickHandler);
+      }));
+
+      document.querySelectorAll(".area").forEach((card => {
+        card.addEventListener("click", areaClickHandler);
+      }));
+
+      function allowDrop(ev) {
+        if (! ('ontouchstart' in window)) {
+          ev.preventDefault();
+        }
+      }
+
+      function drag(ev) {
+        if (! ('ontouchstart' in window)) {
+          ev.dataTransfer.setData("card-id", ev.target.id);
+        }
+      }
+    </script>
     <script type="text/javascript">
       if ('serviceWorker' in navigator && window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
         navigator.serviceWorker.register('service-worker.js');
